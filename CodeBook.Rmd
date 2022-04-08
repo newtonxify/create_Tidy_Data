@@ -1,0 +1,54 @@
+### First load the dplyr package  
+```{r}
+library(dplyr)
+```
+
+### Download & Extract  
+Download the dataset [here](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) and extract into a folder name __UCI HAR Dataset__  
+
+### Variables of each data in the dataset  
+  + features load the features.txt dataset
+  + activities load the activity_labels.txt dataset
+  + subject_test load the subject_test.txt dataset
+  + x_test load the X_test.txt dataset dataset
+  + y_test load the y_test.txt dataset dataset
+  + subject_train load the subject_train.txt dataset
+  + x_train load the X_train.txt
+  + y_train load the y_train.txt dataset
+```{r}
+
+```
+
+### Merging all of the dataset in the created variables into a single dataset  
+* I used __rbind()__ function to categorize dataset and I used __cbind__ to merge the whole categorized data.  
+  + x_train and x_test has been binded and loaded into __x_data__ variable
+  + y_train and y_test has been binded and loaded into __y_data__ variable
+  + subject_train and subject_test has been binded and loaded into __subject_data__ variable
+  + I used cbind to merge x_data, y_data, and subject_data into merged_data variable
+
+### Extraction of mean and standard deviation from the measurement  
+I used the following code to extract mean and STD from the measurement  
+I have extracted the data into the variable Extract_m_s  
++ m is the mean
++ s is the standard deviation
+```{r eval=FALSE}
+Extract_m_s <- merged_data %>% select(subject, code, contains("mean"), contains("std"))
+```
+
+### Using descriptive names and appropriate labels  
++ The column code in Extract_m_s has been changed into __activities__
++ The Acc in column’s name replaced by __Accelerometer__
++ The Gyro in column’s name replaced by __Gyroscope__
++ The BodyBody in column’s name replaced by __Body__
++ The Mag in column’s name replaced by __Magnitude__
++ The character f in column’s name replaced by __Frequency__
++ The character t in column’s name replaced by __Time__
+
+### In the final step, I created the Tidy Data from the dataset I have just worked on
+  I used the chain method to chain the functions into a variable Tidy_Data
+```{r eval=FALSE}
+Tidy_Data <- Extract_m_s %>%
+  group_by(subject, activity) %>%
+  summarise_all(funs(mean))
+write.table(Tidy_Data, "Tidy_Data.txt", row.name=FALSE)
+```
