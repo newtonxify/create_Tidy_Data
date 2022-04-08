@@ -13,4 +13,5 @@ CodeBook.md describes:<br>
   - Data <br>
   - Cleaning of datasets <br>
 
-Run the run_analysis.R code and follow the step by step process.
+Run the run_analysis.R code and follow the step by step process.  
+Copy the code in the CodeBook.md file to R markdown file and render
