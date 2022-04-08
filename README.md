@@ -1,4 +1,4 @@
-# create_Tidy_Data #
+# Creating Tidy Data
 <h2> Peer-graded Assignment: Getting and Cleaning Data Course Project
   
 This repository has the files that has been created by Isaac mothomoholo for peer graded assignment.
